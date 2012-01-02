@@ -190,3 +190,15 @@ void addDocument::add_movie(Movie* m)
     }
     monFichier.close();
 }
+
+void addDocument::on_btn_clear_clicked()
+{
+    ui->le_actor->clear();
+    ui->le_autor->clear();
+    ui->le_editor->clear();
+    ui->le_editorYear->clear();
+    ui->le_pisteNumber->clear();
+    ui->le_resume->clear();
+    ui->le_style->clear();
+    ui->le_title->clear();
+}

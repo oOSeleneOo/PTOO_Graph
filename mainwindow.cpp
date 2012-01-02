@@ -8,6 +8,7 @@
 #include <fstream>
 #include <QString>
 #include <QMessageBox>
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,6 +41,7 @@ void MainWindow::initData()
     int piste, editorYear;
 
     monFichier.open(extension.c_str());
+    lib.clear();
 
     if(monFichier)    //On teste si on peu ouvrir le fichier
     {
@@ -93,8 +95,9 @@ void MainWindow::initData()
 
 void MainWindow::showList()
 {
-    unsigned int i;
+    long i;
 
+    ui->tw_tab->clearContents();
     ui->tw_tab->setRowCount(0);
 
     for(i=0;i<lib.size();i++)
@@ -289,4 +292,125 @@ void MainWindow::exportHTML()
         f<<"</html>"<<std::endl;
         f.close();
     }
+}
+
+void MainWindow::on_actionTrie_alphabetique_triggered()
+{
+    long i,j;
+
+    for(i=lib.size()-1;i>=0;i--)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(lib.at(j)->getTitle() > lib.at(j+1)->getTitle())
+            {
+                Document* doc = lib.at(j);
+                lib[j] = lib.at(j+1);
+                lib[j+1] = doc;
+            }
+        }
+    }
+    showList();
+}
+
+
+
+void MainWindow::on_actionTrie_par_type_triggered()
+{
+    long i,j,k;
+    QVector<Document*> libB;
+    QVector<Document*> libC;
+    QVector<Document*> libM;
+
+    //on ajoute les livres
+    for(k=0;k<lib.size();k++)
+    {
+         Book* b1 = dynamic_cast<Book*>(lib.at(k));
+         if(b1)
+         {
+             libB.push_back(b1);
+         }
+    }
+    //on trie les livres
+    for(i=libB.size()-1;i>=0;i--)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(libB.at(j)->getTitle() > libB.at(j+1)->getTitle())
+            {
+                Document* doc = libB.at(j);
+                libB[j] = libB.at(j+1);
+                libB[j+1] = doc;
+            }
+        }
+    }
+
+    //on ajoute les cd
+    for(k=0;k<lib.size();k++)
+    {
+         CD* c1 = dynamic_cast<CD*>(lib.at(k));
+         if(c1)
+         {
+             libC.push_back(c1);
+         }
+    }
+    //on trie les cd
+    for(i=libC.size()-1;i>=0;i--)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(libC.at(j)->getTitle() > libC.at(j+1)->getTitle())
+            {
+                Document* doc = libC.at(j);
+                libC[j] = libC.at(j+1);
+                libC[j+1] = doc;
+            }
+        }
+    }
+
+    //on ajoute les films
+    for(k=0;k<lib.size();k++)
+    {
+         Movie* m1 = dynamic_cast<Movie*>(lib.at(k));
+         if(m1)
+         {
+             libM.push_back(m1);
+         }
+    }
+    //on trie les films
+    for(i=libM.size()-1;i>=0;i--)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(libM.at(j)->getTitle() > libM.at(j+1)->getTitle())
+            {
+                Document* doc = lib.at(j);
+                libM[j] = libM.at(j+1);
+                libM[j+1] = doc;
+            }
+        }
+    }
+
+    lib.clear();
+    lib = libB + libC + libM;
+    showList();
+}
+
+void MainWindow::on_actionTrie_par_auteur_triggered()
+{
+    long i,j;
+
+    for(i=lib.size()-1;i>=0;i--)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(lib.at(j)->getAutor() > lib.at(j+1)->getAutor())
+            {
+                Document* doc = lib.at(j);
+                lib[j] = lib.at(j+1);
+                lib[j+1] = doc;
+            }
+        }
+    }
+    showList();
 }

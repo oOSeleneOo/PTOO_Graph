@@ -25,10 +25,6 @@ public:
 private slots:
     void on_actionQuitter_triggered();
 
-    void on_pushButton_clicked();
-
-    void on_btn_adddoc_clicked();
-
     void on_btn_addDoc_clicked();
 
     void on_actionAjouter_triggered();
@@ -39,11 +35,15 @@ private slots:
 
     void dell(std::string title);
 
-    void on_pushButton_2_clicked();
-
     void on_actionSupprimer_triggered();
 
     void on_actionExporter_en_HTML_triggered();
+
+    void on_actionTrie_alphabetique_triggered();
+
+    void on_actionTrie_par_type_triggered();
+
+    void on_actionTrie_par_auteur_triggered();
 
 private:
     Ui::MainWindow *ui;

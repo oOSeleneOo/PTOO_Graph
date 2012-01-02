@@ -29,6 +29,8 @@ private slots:
 
     void on_buttonBox_accepted();
 
+    void on_btn_clear_clicked();
+
 private:
     Ui::addDocument *ui;
     QVector<Document*>* myLib;

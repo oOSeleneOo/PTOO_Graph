@@ -106,8 +106,17 @@
     <addaction name="actionSupprimer"/>
     <addaction name="actionExporter_en_HTML"/>
    </widget>
+   <widget class="QMenu" name="menuOutils">
+    <property name="title">
+     <string>Outils</string>
+    </property>
+    <addaction name="actionTrie_alphabetique"/>
+    <addaction name="actionTrie_par_auteur"/>
+    <addaction name="actionTrie_par_type"/>
+   </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
+   <addaction name="menuOutils"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -135,6 +144,21 @@
   <action name="actionExporter_en_HTML">
    <property name="text">
     <string>Exporter en HTML</string>
+   </property>
+  </action>
+  <action name="actionTrie_alphabetique">
+   <property name="text">
+    <string>Trie par nom</string>
+   </property>
+  </action>
+  <action name="actionTrie_par_type">
+   <property name="text">
+    <string>Trie par type</string>
+   </property>
+  </action>
+  <action name="actionTrie_par_auteur">
+   <property name="text">
+    <string>Trie par auteur</string>
    </property>
   </action>
  </widget>
