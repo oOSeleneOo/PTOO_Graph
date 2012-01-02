@@ -4,6 +4,7 @@
 #include "CD.h"
 #include "Movie.h"
 #include "addDocument.h"
+#include "modifyDocument.h"
 #include <iostream>
 #include <fstream>
 #include <QString>
@@ -313,8 +314,6 @@ void MainWindow::on_actionTrie_alphabetique_triggered()
     showList();
 }
 
-
-
 void MainWindow::on_actionTrie_par_type_triggered()
 {
     long i,j,k;
@@ -413,4 +412,106 @@ void MainWindow::on_actionTrie_par_auteur_triggered()
         }
     }
     showList();
+}
+
+void MainWindow::on_btn_modify_clicked()
+{
+    Document* mydoc;
+    int col = 0;
+    QString title;
+    int lig = ui->tw_tab->currentIndex().row();
+    title = ui->tw_tab->item(lig,col)->data(0).toString();
+
+    mydoc = search(title);
+
+    modifyDocument doc(&lib,mydoc,this);
+    doc.exec();
+    if(doc.close())
+    {
+        showList();
+        copyLibrary();
+    }
+}
+
+Document* MainWindow::search(QString title)
+{
+    unsigned int i=0;
+    bool ok = false;
+    Document* doc = new Document("Inconnu", "Inconnu");
+    while((i<lib.size()) && (ok == false))
+    {
+        if(lib[i]->getTitle() == title.toStdString())
+        {
+            ok = true;
+        }
+        i++;
+    }
+
+    if(ok == false)
+    {
+        return doc;
+    }
+    else
+    {
+        return lib[i-1];
+    }
+}
+
+void MainWindow::copyLibrary()
+{
+    std::ofstream f("sauve.txt");
+    if(f)
+    {
+        for(unsigned int i = 0;i<lib.size();i++)
+        {
+            Book* b = dynamic_cast<Book*>(lib[i]);
+            CD* c = dynamic_cast<CD*>(lib[i]);
+            Movie* m = dynamic_cast<Movie*>(lib[i]);
+
+            if(b)
+            {
+                f<<"<Book>";
+                f<<"//";
+                f<<b->getTitle();
+                f<<"//";
+                f<<b->getAutor();
+                f<<"//";
+                f<<b->getResume();
+                f<<"//";
+                f<<b->getEditor();
+                f<<"//";
+                f<<b->getEditorYear();
+                f<<"//"<<std::endl;
+            }
+            else if (c)
+            {
+                f<<"<CD>";
+                f<<"//";
+                f<<c->getTitle();
+                f<<"//";
+                f<<c->getAutor();
+                f<<"//";
+                f<<c->getStyle();
+                f<<"//";
+                f<<c->getPisteNumber();
+                f<<"//"<<std::endl;
+            }
+            else
+            {
+                f<<"<Movie>";
+                f<<"//";
+                f<<m->getTitle();
+                f<<"//";
+                f<<m->getAutor();
+                f<<"//";
+                f<<m->getResume();
+                f<<"//";
+                f<<m->getStyle();
+                f<<"//";
+                f<<m->getActor();
+                f<<"//"<<std::endl;
+            }
+        }
+        f.close();
+    }
 }

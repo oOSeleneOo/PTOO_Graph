@@ -21,6 +21,8 @@ public:
     void showList();
     std::vector<std::string> split(std::string chaineInit, std::string chaineSep);
     void exportHTML();
+    Document* search(QString title);
+    void copyLibrary();
 
 private slots:
     void on_actionQuitter_triggered();
@@ -44,6 +46,8 @@ private slots:
     void on_actionTrie_par_type_triggered();
 
     void on_actionTrie_par_auteur_triggered();
+
+    void on_btn_modify_clicked();
 
 private:
     Ui::MainWindow *ui;
