@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addDocument.ui'
 **
-** Created: Sun 1. Jan 22:06:19 2012
+** Created: Mon 2. Jan 14:43:48 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,6 +20,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
+#include <QtGui/QPushButton>
 #include <QtGui/QTextEdit>
 
 QT_BEGIN_NAMESPACE
@@ -46,6 +47,7 @@ public:
     QTextEdit *le_resume;
     QLabel *label_4;
     QLineEdit *le_actor;
+    QPushButton *btn_clear;
 
     void setupUi(QDialog *addDocument)
     {
@@ -119,6 +121,9 @@ public:
         le_actor->setObjectName(QString::fromUtf8("le_actor"));
         le_actor->setEnabled(false);
         le_actor->setGeometry(QRect(170, 450, 113, 20));
+        btn_clear = new QPushButton(addDocument);
+        btn_clear->setObjectName(QString::fromUtf8("btn_clear"));
+        btn_clear->setGeometry(QRect(220, 525, 75, 23));
 
         retranslateUi(addDocument);
         QObject::connect(buttonBox, SIGNAL(accepted()), addDocument, SLOT(accept()));
@@ -145,6 +150,7 @@ public:
         label_11->setText(QApplication::translate("addDocument", "Resume :", 0, QApplication::UnicodeUTF8));
         label_10->setText(QApplication::translate("addDocument", "Editor :", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("addDocument", "Actors :", 0, QApplication::UnicodeUTF8));
+        btn_clear->setText(QApplication::translate("addDocument", "Clear", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

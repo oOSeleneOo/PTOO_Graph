@@ -78,7 +78,7 @@ void addDocument::on_buttonBox_accepted()
 
     if(ui->le_title->text() == "")
     {
-       QMessageBox::information(this, tr("Ajout annulé"), tr("You must write an title to addind a document !"), QMessageBox::Ok);
+       QMessageBox::information(this, tr("Add cancel"), tr("You must write an title to addind a document !"), QMessageBox::Ok);
     }
     else
     {
@@ -91,26 +91,26 @@ void addDocument::on_buttonBox_accepted()
         editorYear = ui->le_editorYear->text().toInt();
         pisteNumber = ui->le_pisteNumber->text().toInt();
 
-        if(ui->cb_type->currentIndex() == 0) //on ajoute un Book
+        if(ui->cb_type->currentIndex() == 0) //add a book
         {
             Book* doc = new Book(title,autor,resume,editorYear, editor);
             add_book(doc);
             myLib->push_back(doc);
-            QMessageBox::information(this, tr("Ajout éffectué"), tr("Your document is add !"), QMessageBox::Ok);
+            QMessageBox::information(this, tr("Add"), tr("Your document is add !"), QMessageBox::Ok);
         }
-        else if(ui->cb_type->currentIndex() == 1) //on ajoute un CD
+        else if(ui->cb_type->currentIndex() == 1) //add a  CD
         {
             CD* doc = new CD(title,autor,style,pisteNumber);
             add_cd(doc);
             myLib->push_back(doc);
-            QMessageBox::information(this, tr("Ajout éffectué"), tr("Your document is add !"), QMessageBox::Ok);
+            QMessageBox::information(this, tr("Add"), tr("Your document is add !"), QMessageBox::Ok);
         }
-        else if(ui->cb_type->currentIndex() == 2)//on ajoute un Movie
+        else if(ui->cb_type->currentIndex() == 2)//add a Movie
         {
             Movie* doc = new Movie(title,autor,resume,style,autor);
             add_movie(doc);
             myLib->push_back(doc);
-            QMessageBox::information(this, tr("Ajout éffectué"), tr("Your document is add !"), QMessageBox::Ok);
+            QMessageBox::information(this, tr("Add"), tr("Your document is add !"), QMessageBox::Ok);
         }
     }
 }

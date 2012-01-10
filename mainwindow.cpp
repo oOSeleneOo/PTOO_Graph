@@ -35,7 +35,7 @@ void MainWindow::initMainWindow()
 
 void MainWindow::initData()
 {
-    std::ifstream monFichier;   //Déclaration d'un flux permettant d'écrire un fichier.
+    std::ifstream monFichier;
     std::string extension = "./sauve.txt";
     std::vector<std::string> myLine;
     std::string title, autor, editor, style, resume, actor;
@@ -44,12 +44,12 @@ void MainWindow::initData()
     monFichier.open(extension.c_str());
     lib.clear();
 
-    if(monFichier)    //On teste si on peu ouvrir le fichier
+    if(monFichier)
     {
-        while(monFichier)    //Tant qu'on n'est pas a la fin
+        while(monFichier)
         {
             std::string ligne;
-            getline(monFichier, ligne); //On lit une ligne
+            getline(monFichier, ligne);
             myLine = split(ligne, "//");
             if (myLine[0] == "<Book>")
             {
@@ -89,7 +89,7 @@ void MainWindow::initData()
     {
         std::cout<<"ERREUR: Impossible d'ouvrir le fichier "<<extension<<std::endl;
     }
-    monFichier.close(); //On finit par refermer le fichier
+    monFichier.close();
 
     showList();
 }
@@ -131,18 +131,12 @@ std::vector<std::string> MainWindow::split(std::string chaineInit, std::string c
     std::vector<std::string> chaineSplit;
     size_t pos;
 
-    //on split tant que l'on est pas arrivé au bout de la chaine
     do{
-        //position du séparateur dans la chaine initiale
         pos = chaineInit.find(chaineSep);
-        //si ce n'est pas la chaine complete
         if (pos!=std::string::npos){
-            //on ajoute tout les caractères du début jusqu'a la position du séparateur
             chaineSplit.push_back(chaineInit.substr(0,pos));
-            //on réduit la chaine initiale de l'élément ajouté au vecteur ainsi que de la taille du séparateur
             chaineInit = chaineInit.substr(pos+chaineSep.length());
         }else{
-            //on ajoute simplement ce qu'il reste de la chaine initiale (dernier élément)
             chaineSplit.push_back(chaineInit);
         }
     }while(pos!=std::string::npos);
@@ -219,11 +213,11 @@ void MainWindow::dell(std::string title)
                 myLine = split(ligne, "//");
                 if (myLine[1] == title)
                 {
-                    //c'est le document a supprimer
+                    //it's the doc to delete
                 }
                 else
                 {
-                    //c'est un document a garder
+                    //it's a doc to keep
                     newFichier<<ligne<<std::endl;
                 }
             }
@@ -234,9 +228,9 @@ void MainWindow::dell(std::string title)
         }
         newFichier.close();
         monFichier.close();
-        //supression de l'ancien fichier
+        //Delete the orl file
         remove(extension.c_str());
-        //on renomme le nouveau fichier
+        //Rename the new file
         rename(newName.c_str(), extension.c_str());
     }
     else
@@ -321,7 +315,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
     QVector<Document*> libC;
     QVector<Document*> libM;
 
-    //on ajoute les livres
+    //Add books
     for(k=0;k<lib.size();k++)
     {
          Book* b1 = dynamic_cast<Book*>(lib.at(k));
@@ -330,7 +324,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
              libB.push_back(b1);
          }
     }
-    //on trie les livres
+    //Short books
     for(i=libB.size()-1;i>=0;i--)
     {
         for(j=0;j<i;j++)
@@ -344,7 +338,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
         }
     }
 
-    //on ajoute les cd
+    //Add CD
     for(k=0;k<lib.size();k++)
     {
          CD* c1 = dynamic_cast<CD*>(lib.at(k));
@@ -353,7 +347,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
              libC.push_back(c1);
          }
     }
-    //on trie les cd
+    //short cd
     for(i=libC.size()-1;i>=0;i--)
     {
         for(j=0;j<i;j++)
@@ -367,7 +361,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
         }
     }
 
-    //on ajoute les films
+    //add movie
     for(k=0;k<lib.size();k++)
     {
          Movie* m1 = dynamic_cast<Movie*>(lib.at(k));
@@ -376,7 +370,7 @@ void MainWindow::on_actionTrie_par_type_triggered()
              libM.push_back(m1);
          }
     }
-    //on trie les films
+    //short movie
     for(i=libM.size()-1;i>=0;i--)
     {
         for(j=0;j<i;j++)

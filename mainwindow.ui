@@ -49,7 +49,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Ajouter un document</string>
+     <string>Add a document</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_dellDoc">
@@ -65,7 +65,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Supprimer le document</string>
+     <string>Delete a document</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_modify">
@@ -78,7 +78,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Modifier le document</string>
+     <string>Modify a document</string>
     </property>
    </widget>
   </widget>
@@ -93,7 +93,7 @@
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="title">
-     <string>Fichier</string>
+     <string>File</string>
     </property>
     <addaction name="actionQuitter"/>
    </widget>
@@ -108,7 +108,7 @@
    </widget>
    <widget class="QMenu" name="menuOutils">
     <property name="title">
-     <string>Outils</string>
+     <string>Tools</string>
     </property>
     <addaction name="actionTrie_alphabetique"/>
     <addaction name="actionTrie_par_auteur"/>
@@ -138,7 +138,7 @@
   </action>
   <action name="actionQuitter">
    <property name="text">
-    <string>Quitter</string>
+    <string>Quit</string>
    </property>
   </action>
   <action name="actionExporter_en_HTML">
@@ -148,17 +148,17 @@
   </action>
   <action name="actionTrie_alphabetique">
    <property name="text">
-    <string>Trie par nom</string>
+    <string>Short by name</string>
    </property>
   </action>
   <action name="actionTrie_par_type">
    <property name="text">
-    <string>Trie par type</string>
+    <string>Short by type</string>
    </property>
   </action>
   <action name="actionTrie_par_auteur">
    <property name="text">
-    <string>Trie par auteur</string>
+    <string>Short by autor</string>
    </property>
   </action>
  </widget>
